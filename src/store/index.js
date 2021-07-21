@@ -1,11 +1,31 @@
 import { createStore } from "vuex";
-import * as state from "./state";
-import * as getters from "./getters";
-import * as mutations from "./mutations";
-import * as actions from "./actions";
+import axios from "axios";
 export default createStore({
-  state,
-  mutations,
-  getters,
-  actions
+  state: {
+    products: [],
+    product: null
+  },
+  mutations: {
+    SET_PRODUCTS(state, products) {
+      state.products = products;
+    },
+    SET_PRODUCT(state, product) {
+      state.product = product;
+    }
+  },
+  getters: {},
+  actions: {
+    GET_PRODUCTS({ commit }) {
+      axios.get("https://fakestoreapi.com/products").then(response => {
+        commit("SET_PRODUCTS", response.data);
+      });
+    },
+    GET_PRODUCT({ commit }, productID) {
+      axios
+        .get(`https://fakestoreapi.com/products/${productID}`)
+        .then(response => {
+          commit("SET_PRODUCT", response.data);
+        });
+    }
+  }
 });
