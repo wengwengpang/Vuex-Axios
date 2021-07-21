@@ -1,11 +1,7 @@
 <template>
   <div class="col-3 mt-3">
     <div class="card h-100" style="width: 18rem;">
-      <img
-        src="https://via.placeholder.com/150x100"
-        class="card-img-top w-100"
-        alt="..."
-      />
+      <img :src="product.image" class="card-img-top w-100" alt="..." />
       <div class="card-body">
         <h5 class="card-title">
           <router-link :to="{ name: 'product', params: { id: 23 } }">
@@ -24,7 +20,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: ["product"]
+};
 </script>
 
 <style lang="css" scoped></style>
