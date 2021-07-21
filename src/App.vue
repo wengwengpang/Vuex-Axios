@@ -2,7 +2,7 @@
   <div id="app">
     <app-header></app-header>
     <div class="container">
-      <router-view />
+      <router-view :key="$route.params.id" />
     </div>
   </div>
 </template>
