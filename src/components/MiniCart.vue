@@ -5,12 +5,12 @@
     aria-labelledby="dropdownMenuButton1"
     @click.stop
   >
-    <div>
+    <div v-for="item in cart" :key="item.product.id">
       <div class="px-2 d-flex justify-content-between">
         <div>
-          <strong>Product title</strong>
+          <strong>{{ item.product.title }}</strong>
           <br />
-          1 x $23
+          {{ item.quantity }} x ${{ item.product.price }}
         </div>
         <div>
           <span class="badge bg-secondary">
@@ -21,14 +21,26 @@
     </div>
     <hr />
     <div class="d-flex justify-content-between">
-      <span>Total:$23</span>
+      <span>Total:${{ productCartTotal }}</span>
       <a href="#" @click.stop>Clear Cart</a>
     </div>
   </ul>
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    cart() {
+      return this.$store.state.cart;
+    },
+    productCartTotal() {
+      return this.$store.getters.productCartTotal;
+    }
+  },
+  mounted() {
+    // this.$store.dispatch("getCartItems");
+  }
+};
 </script>
 
 <style lang="css" scoped></style>

@@ -17,7 +17,7 @@
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              0 Cart
+              {{ productCartCount }} Cart
             </button>
 
             <mini-Cart></mini-Cart>
@@ -37,6 +37,11 @@ export default {
   },
   data() {
     return {};
+  },
+  computed: {
+    productCartCount() {
+      return this.$store.getters.productCartCount;
+    }
   }
 };
 </script>

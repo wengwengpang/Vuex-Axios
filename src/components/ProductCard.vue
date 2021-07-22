@@ -12,7 +12,7 @@
         <p class="card-text">
           {{ product.description }}
         </p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <a href="#" class="btn btn-primary" @click="addToCart">Add To Cart</a>
       </div>
     </div>
   </div>
@@ -20,7 +20,21 @@
 
 <script>
 export default {
-  props: ["product"]
+  props: ["product"],
+  methods: {
+    addToCart() {
+      this.$store.dispatch("addProductToCart", {
+        products: [
+          {
+            userId: 5,
+            date: 2050,
+            product: this.product,
+            quantity: 1
+          }
+        ]
+      });
+    }
+  }
 };
 </script>
 

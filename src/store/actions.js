@@ -9,5 +9,26 @@ export let getProducts = ({ commit }) => {
 export const getProduct = ({ commit }, productId) => {
   axios.get(`https://fakestoreapi.com/products/${productId}`).then(response => {
     commit("SET_PROUDCT", response.data);
+    console.log(response.data);
   });
 };
+
+export const addProductToCart = ({ commit }, productp) => {
+  // console.log(products[0].product);
+  commit("ADD_TO_CART", {
+    product: productp.products[0].product,
+    quantity: productp.products[0].quantity
+  });
+  // axios.post("https://fakestoreapi.com/carts", JSON.stringify(productp));
+  // console.log(product);
+};
+
+// export const getCartItems = ({ commit }) => {
+//   axios.get("https://fakestoreapi.com/carts").then(res => {
+//     console.log(res);
+//     commit("SET_CART", {
+//       product: "res.data.products",
+//       quantity: res.data.products
+//     });
+//   });
+// };
