@@ -1,4 +1,4 @@
 export default {
-  products: [111],
+  products: [],
   product: null
 };

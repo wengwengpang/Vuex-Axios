@@ -16,9 +16,6 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getProducts");
-    setTimeout(() => {
-      console.log(this.products);
-    }, 2000);
   },
   computed: {
     // products: function() {
@@ -30,10 +27,8 @@ export default {
     //   console.log(`++${this.$store.state.default.products}++`);
     //   return this.$store.state.default.products;
     // }
-    products: {
-      get() {
-        return this.$store.state.default.products;
-      }
+    products() {
+      return this.$store.state.products;
     }
   },
   data() {
