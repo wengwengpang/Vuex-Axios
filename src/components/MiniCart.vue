@@ -14,7 +14,12 @@
         </div>
         <div>
           <span class="badge bg-secondary">
-            <a href="#" class="badge badge-secondary" @click.stop>remove</a>
+            <a
+              href="#"
+              class="badge badge-secondary"
+              @click.stop.prevent="removeProductFromCart(item.product)"
+              >remove</a
+            >
           </span>
         </div>
       </div>
@@ -22,7 +27,7 @@
     <hr />
     <div class="d-flex justify-content-between">
       <span>Total:${{ productCartTotal }}</span>
-      <a href="#" @click.stop>Clear Cart</a>
+      <a href="#" @click.stop.prevent="clearCartItem()">Clear Cart</a>
     </div>
   </ul>
 </template>
@@ -39,6 +44,14 @@ export default {
   },
   mounted() {
     // this.$store.dispatch("getCartItems");
+  },
+  methods: {
+    removeProductFromCart(product) {
+      this.$store.dispatch("removeProductFromCart", product);
+    },
+    clearCartItem() {
+      this.$store.dispatch("clearCartItem");
+    }
   }
 };
 </script>
